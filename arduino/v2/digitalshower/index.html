@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DigitalShower</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: rgb(0, 0, 0);
+            color: white;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+        }
+        .clock {
+            font-size: 1.5rem;
+            font-weight: 300;
+            margin-bottom: 10px;
+        }
+        .temperature {
+            display: flex;
+            align-items: flex-start;
+            font-size: 4rem;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .temperature p {
+            font-size: 4rem;
+            font-weight: bold;
+            margin-left: 5px;
+            margin-top: 15px;
+            align-self: flex-start;
+        }
+        .name-selector {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            width: 100vw;
+        }
+        .name-selector button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            margin: 3vw 8vw;
+        }
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            width: 100vw;
+            height: 80vw;
+        }
+        .icon {
+            width: 50px;
+            height: 50px;
+            filter: invert(1);
+        }
+        .icon-large {
+            width: 70px;
+            height: 70px;
+            filter: invert(1);
+        }
+        .red {
+            filter: invert(22%) sepia(62%) saturate(7446%) hue-rotate(355deg) brightness(94%) contrast(121%);
+        }
+        .blue {
+            filter: invert(8%) sepia(100%) saturate(7495%) hue-rotate(247deg) brightness(97%) contrast(143%);
+        }
+        .button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 6rem;
+            cursor: pointer;
+            user-select: none;
+            width: 100%;
+            height: 80%;
+        }
+    </style>
+</head>
+<body>
+    <div class="clock" id="clock">----.--.-- - --:--:--</div>
+    <div class="temperature"><h1 id="temperature-value">22</h1><p>°C</p></div>
+    <div class="name-selector">
+        <button id="prev-name"><img class="icon" src="icons\angle-left.svg" /></button>
+        <button id="name"><img class="icon" src="icons\user.svg" /></button>        
+        <button id="next-name"><img class="icon" src="icons\angle-right.svg" /></button>
+    </div>
+    <div class="name-selector">
+        <button id="prev-name"><img class="icon" src="icons\shower.svg" /></button>    
+        <button ></button>    
+        <button id="next-name"><img class="icon" src="icons\cloud-rain.svg" /></button>
+    </div>
+    <div class="buttons">
+        <div class="button"><img class="icon-large red" src="icons\plus.svg" /></div>
+        <div></div>
+        <div class="button"><img class="icon-large" src="icons\angle-up.svg" /></div>
+        <div></div>
+        <div class="button"><img class="icon-large" src="icons\power-off.svg" /></div>
+        <div></div>
+        <div class="button"><img class="icon-large blue" src="icons\minus.svg" /></div>
+        <div></div>
+        <div class="button"><img class="icon-large" src="icons\angle-down.svg" /></div>
+    </div>
+    <script>
+        function updateClock() {
+            const now = new Date();
+            const year = now.getFullYear();
+            const months = ["Január", "Február", "Március", "Április", "Május", "Június", "Július", "Augusztus", "Szeptember", "Október", "November", "December"];
+            const month = months[now.getMonth()];
+            const day = String(now.getDate()).padStart(2, '0');
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            document.getElementById("clock").textContent = `${month} ${day} - ${hours}:${minutes}:${seconds}`;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+    </script>
+</body>
+</html>
